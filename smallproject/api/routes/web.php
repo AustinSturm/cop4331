@@ -17,6 +17,11 @@ $app->get('/', function () use ($app) {
 
 $app->group(['prefix' => 'v1'], function($app)
 {
+    // main page
+    $app->get('/', function(){
+     return view('contact');
+    });
+
     // User
     $app->post('/register','UserController@create');
     $app->post('/login','UserController@authenticate');

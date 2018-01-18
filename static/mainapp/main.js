@@ -24,19 +24,19 @@ function w3_close() {
     document.getElementById("nav-sidebar").style.display = "none";
 }
 
-function Play(){
-    document.getElementById
+// if not logged in display login form
+function loadLogin() {
+   var xhttp = new XMLHttpRequest();
+   xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+         document.getElementById("content").innerHTML = this.responseText;
+      }
+   };
+   xhttp.open("GET", "login.html", true);
+   xhttp.send();
 }
 
-// Responsible for mouse over playback
-var figure = $(".videoContainer").hover( hoverVideo, hideVideo );
-
-function hoverVideo(e) {
-    $('video', this).get(0).play();
+// load an individual contact
+function loadContact() {
+   return 0;
 }
-
-function hideVideo(e) {
-    $('video', this).get(0).pause();
-}
-
-// end
