@@ -10,6 +10,8 @@ For Leineckers COP4331 projects
 
 ## Version 1 API Endpoints
 
+**Accessing live endpoints** - To access a live endpoint use the following url: ```http://<ip_address>/v1/<endpoint>```
+
 | Endpoint         | Method | Return Value | Description |
 |------------------|--------|--------------|------------ |
 | /register        |  POST  |  JSON Text   | Register a new user |
@@ -20,7 +22,7 @@ For Leineckers COP4331 projects
 | /contact/destroy |  POST  |  JSON Text   | Removes a contact from a users contact list|
 
 ### **/register**
-
+---
 **Required POST Request Body Arguments**:
 
 |Argument||Description|
@@ -32,7 +34,7 @@ For Leineckers COP4331 projects
 **Returns** a ```{status: success}``` message upon succesful user input, and a ```{status: failure}``` message otherwise.
 
 ### **/login**
-
+---
 **Required POST Request Body Arguments**:
 
 |Argument||Description|
@@ -43,7 +45,7 @@ For Leineckers COP4331 projects
 **Returns** a ```{status: success, api_key: "api_key"}``` JSON response upon succesful user input, and a ```{status: failure}``` JSON response otherwise.
 
 ### **/user/contacts**
-
+---
 **Required POST Request Body Arguments**:
 
 |Argument||Description|
@@ -53,12 +55,12 @@ For Leineckers COP4331 projects
 **Returns** a JSON representation of a user's contacts upon succesful input, and a ```{status: unauthorized}``` JSON response if a valid API Key is not present.
 
 ### **/contact/add**
-
+---
 **Required POST Request Body Arguments**:
 
 |Argument||Description|
 |-----|-|------------------------------------------------------|
-|*api_key*|Required|The API Key of the user adding a contact|
+|*api_key*|Required|The API Key of the user searching for a contact|
 |*contact_name*|Required| A string representation of the new contact's name|
 |*contact_address*| Required |A string representation of the new contact's address|
 |*contact_city*|Required|A string representation of the new contact's city|
@@ -72,22 +74,23 @@ For Leineckers COP4331 projects
 **Returns** a ```{status: success}``` message upon succesful user input, and a ```{status: failure}``` message otherwise.
 
 ### **/contact/get**
-
+---
 **Required POST Request Body Arguments**:
 
 |Argument||Description|
 |-----|-|------------------------------------------------------|
-|*name*|Required|A string representation of the registering user's name|
-|*email*|Required| A string representation of the registering user's email|
-|*password*| Required |A string representation of the registering user's encrypted password|
+|*api_key*|Required|A string representation of the registering user's name|
+|*contact_name*|Required| A string representation of the registering user's email|
 
+**Returns** a JSON representation of a user's contacts with a given ```contact_name``` and a ```{status: failure}``` message otherwise.
 
 ### **/contact/destroy**
-
+---
 **Required POST Request Body Arguments**:
 
 |Argument||Description|
 |-----|-|------------------------------------------------------|
-|*name*|Required|A string representation of the registering user's name|
-|*email*|Required| A string representation of the registering user's email|
-|*password*| Required |A string representation of the registering user's encrypted password|
+|*api_key*|Required|The API key of the user deleting a contact|
+|*contact_id*|Required| An integer representation of the contact's id that is being deleted|
+
+**Returns** a ```{status: success}``` message upon succesful deletion, and a ```{status: failure}``` message otherwise.
