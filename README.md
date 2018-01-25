@@ -25,7 +25,7 @@ For Leineckers COP4331 projects
 ---
 **Required POST Request Body Arguments**:
 
-|Argument||Description|
+|Argument|Necessity|Description|
 |-----|-|------------------------------------------------------|
 |*name*|Required|A string representation of the registering user's name|
 |*email*|Required| A string representation of the registering user's email|
@@ -37,7 +37,7 @@ For Leineckers COP4331 projects
 ---
 **Required POST Request Body Arguments**:
 
-|Argument||Description|
+|Argument|Necessity|Description|
 |-----|-|------------------------------------------------------|
 |*email*|Required| A string representation of a user's email|
 |*password*| Required |A string representation of a user's encrypted password|
@@ -48,7 +48,7 @@ For Leineckers COP4331 projects
 ---
 **Required POST Request Body Arguments**:
 
-|Argument||Description|
+|Argument|Necessity|Description|
 |-----|-|------------------------------------------------------|
 |*api_key*|Required|The API Key of the user retrieving contacts|
 
@@ -58,7 +58,7 @@ For Leineckers COP4331 projects
 ---
 **Required POST Request Body Arguments**:
 
-|Argument||Description|
+|Argument|Necessity|Description|
 |-----|-|------------------------------------------------------|
 |*api_key*|Required|The API Key of the user searching for a contact|
 |*contact_name*|Required| A string representation of the new contact's name|
@@ -77,7 +77,7 @@ For Leineckers COP4331 projects
 ---
 **Required POST Request Body Arguments**:
 
-|Argument||Description|
+|Argument|Necessity|Description|
 |-----|-|------------------------------------------------------|
 |*api_key*|Required|A string representation of the registering user's name|
 |*contact_name*|Required| A string representation of the registering user's email|
@@ -88,7 +88,7 @@ For Leineckers COP4331 projects
 ---
 **Required POST Request Body Arguments**:
 
-|Argument||Description|
+|Argument|Necessity|Description|
 |-----|-|------------------------------------------------------|
 |*api_key*|Required|The API key of the user deleting a contact|
 |*contact_id*|Required| An integer representation of the contact's id that is being deleted|
