@@ -1,15 +1,93 @@
-<<<<<<< HEAD
-# cop4331
-For Leineckers COP4331 projects
-=======
 # cop4331
 For Leineckers COP4331 projects
 
 ## Locally setting up API - Linux or Mac
 
-1. Install PHP and MySQL locally - If you set a mysql root password, go to *api/.env* and set **DB_PASSWORD** to your mysql root password
-2. Create a local database named *smallproject*
+1. Install PHP and MySQL locally - If you set a mysql root password, go to *api/.env* and set **DB_PASSWORD** to your mysql root password2. Create a local database named *smallproject*
 3. Go to the api folder and run the command `php artisan migrate`
 4. In the api folder run `./start` and a php server on **localhost:3000** will serve the api.
 5. Open browser, and go to localhost:3000
->>>>>>> ac8b044485c53b2ef9b25758b6a4cddcce1b9757
+
+## Version 1 API Endpoints
+
+| Endpoint         | Method | Return Value | Description |
+|------------------|--------|--------------|------------ |
+| /register        |  POST  |  JSON Text   | Register a new user |
+| /login           |  POST  |  JSON Text   | Logs a new user into the app|
+| /user/contacts   |  POST  |  JSON Text   | Gives a list of a logged in users contacts|
+| /contact/add     |  POST  |  JSON Text   | Adds a contact to a users contact list|
+| /contact/get     |  POST  |  JSON Text   | Retrieves a specific contact from the users contact list |
+| /contact/destroy |  POST  |  JSON Text   | Removes a contact from a users contact list|
+
+### **/register**
+
+**Required POST Request Body Arguments**:
+
+|Argument||Description|
+|-----|-|------------------------------------------------------|
+|*name*|Required|A string representation of the registering user's name|
+|*email*|Required| A string representation of the registering user's email|
+|*password*| Required |A string representation of the registering user's encrypted password|
+
+**Returns** a ```{status: success}``` message upon succesful user input, and a ```{status: failure}``` message otherwise.
+
+### **/login**
+
+**Required POST Request Body Arguments**:
+
+|Argument||Description|
+|-----|-|------------------------------------------------------|
+|*email*|Required| A string representation of a user's email|
+|*password*| Required |A string representation of a user's encrypted password|
+
+**Returns** a ```{status: success, api_key: "api_key"}``` JSON response upon succesful user input, and a ```{status: failure}``` JSON response otherwise.
+
+### **/user/contacts**
+
+**Required POST Request Body Arguments**:
+
+|Argument||Description|
+|-----|-|------------------------------------------------------|
+|*api_key*|Required|The API Key of the user retrieving contacts|
+
+**Returns** a JSON representation of a user's contacts upon succesful input, and a ```{status: unauthorized}``` JSON response if a valid API Key is not present.
+
+### **/contact/add**
+
+**Required POST Request Body Arguments**:
+
+|Argument||Description|
+|-----|-|------------------------------------------------------|
+|*api_key*|Required|The API Key of the user adding a contact|
+|*contact_name*|Required| A string representation of the new contact's name|
+|*contact_address*| Required |A string representation of the new contact's address|
+|*contact_city*|Required|A string representation of the new contact's city|
+|*contact_state*|Required|A string representation of the new contact's state|
+|*contact_zip_code*|Required|A string representation of the new contact's zip code|
+|*contact_home_phone*|Required|A string representation of the new contact's home phone|
+|*contact_cell_phone*|Optional|A string representation of the new contact's cell phone|
+|*contact_primary_email*|Required|A string representation of the new contact's primary email|
+|*contact_secondary_email*|Optional|A string representation of the new contact's secondary email|
+
+**Returns** a ```{status: success}``` message upon succesful user input, and a ```{status: failure}``` message otherwise.
+
+### **/contact/get**
+
+**Required POST Request Body Arguments**:
+
+|Argument||Description|
+|-----|-|------------------------------------------------------|
+|*name*|Required|A string representation of the registering user's name|
+|*email*|Required| A string representation of the registering user's email|
+|*password*| Required |A string representation of the registering user's encrypted password|
+
+
+### **/contact/destroy**
+
+**Required POST Request Body Arguments**:
+
+|Argument||Description|
+|-----|-|------------------------------------------------------|
+|*name*|Required|A string representation of the registering user's name|
+|*email*|Required| A string representation of the registering user's email|
+|*password*| Required |A string representation of the registering user's encrypted password|
