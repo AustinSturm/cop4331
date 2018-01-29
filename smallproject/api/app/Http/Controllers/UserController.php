@@ -1,29 +1,29 @@
 <?php
 
 namespace App\Http\Controllers;
- 
+
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\User;
 
 use Auth;
- 
+
 class UserController extends Controller
 {
- 
+
     public function __construct()
     {
         $this->middleware('auth', ['only' => [
             'showContacts'
         ]]);
     }
- 
+
     public function create(Request $request)
     {
         $this->validate($request, [
             'name'  => 'required',
-            'email' => 'required|email', 
+            'email' => 'required|email',
             'password'   => 'required',
         ]);
 
@@ -42,8 +42,8 @@ class UserController extends Controller
         // Get current user
         $user = Auth::user();
 
-        $contacts = $user->contacts;
-        return response()->json($attendance);
+        $contacts = $user->contacts();
+        return response()->json($contacts);
     }
 
     /**

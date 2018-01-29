@@ -68,6 +68,7 @@ For Leineckers COP4331 projects
 |*contact_zip_code*|Required|A string representation of the new contact's zip code|
 |*contact_home_phone*|Required|A string representation of the new contact's home phone|
 |*contact_cell_phone*|Optional|A string representation of the new contact's cell phone|
+|*contact_work_phone*|Required|A string representation of the new contact's primary email|
 |*contact_primary_email*|Required|A string representation of the new contact's primary email|
 |*contact_secondary_email*|Optional|A string representation of the new contact's secondary email|
 

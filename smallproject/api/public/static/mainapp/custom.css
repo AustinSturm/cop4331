@@ -1,0 +1,54 @@
+.nav-top-highlight:hover{color:#fff!important;background-color:#00bfad!important}
+
+.highlight-lteal{background-color: #00bfad!important}
+
+.dropdown:hover .dropdown:active {background-color: #00bfad !important}
+
+.videoInsert {
+    height: 100%!important;
+    width: 90%!important;
+}
+
+.grid-container {position:absolute;left:15px;bottom:10px;right:15px}
+
+.clearfix:after{content:"";display:table;clear:both}
+
+.videoGrid {
+    margin: 0 auto;
+    width: 99%;
+    left:20px;
+    top: 30px;
+    right:20px;
+    display: block;
+    min-width: 630px;
+    max-width: 980px;
+}
+
+.postContainer{
+    display: inline-block;
+    width: 300px;
+    height: 340px;
+    margin: 11px;
+    padding-top: 30px;
+}
+
+.videoContainer{
+    width: inherit;
+    height: 320px;
+    background-color: skyblue;
+}
+
+.videoContainer video{
+    width: 300px !important;
+    height: 320px !important;
+}
+
+.infoContainer{
+    background-color: #D3D3D3;
+    width: inherit;
+}
+
+.contentCenter{
+    margin: 0 auto;
+    width: 99%;
+}
