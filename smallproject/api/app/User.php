@@ -11,7 +11,7 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 class User extends Model implements AuthenticatableContract, AuthorizableContract
 {
     use Authenticatable, Authorizable;
-
+    protected $primaryKey = 'UserID';
     /**
      * The attributes that are mass assignable.
      *
@@ -31,6 +31,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     ];
 
     public function contacts() {
-        return $this->hasMany('App\Contact');
+        return $this->hasMany('App\Contact', 'user_id');
     }
 }

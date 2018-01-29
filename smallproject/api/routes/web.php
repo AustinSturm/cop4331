@@ -15,7 +15,7 @@ $app->get('/', function () use ($app) {
     return $app->version();
 });
 
-$app->group(['prefix' => 'v1'], function($app)
+$app->group(['prefix' => ''], function($app)
 {
     // main page
     $app->get('/', function(){

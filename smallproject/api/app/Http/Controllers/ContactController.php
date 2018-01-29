@@ -26,13 +26,7 @@ class ContactController extends Controller
         $creator = Auth::user();
 
         $this->validate($request, [
-            'contact_name'  => 'required',
-            'contact_address' => 'required',
-            'contact_city' => 'required',
-            'contact_state' => 'required',
-            'contact_zip_code' => 'required',
-            'contact_home_phone' => 'required',
-            'contact_primary_email' => 'required|email',
+            'contact_name'  => 'required'
         ]);
 
         $contact = new Contact();

@@ -42,7 +42,7 @@ class UserController extends Controller
         // Get current user
         $user = Auth::user();
 
-        $contacts = $user->contacts();
+        $contacts = $user->contacts;
         return response()->json($contacts);
     }
 
