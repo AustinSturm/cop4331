@@ -48,29 +48,18 @@ function loadRegister() {
 }
 
 function login() {
-    src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"
-    var email = $("input[name='email']").val();
-    var password = $("input[name='password']").val();
-    
-    $.ajax({
-        type: 'POST',
-        url: 'http://localhost:3000/login',
-        data: JSON.stringify({
-            email: email,
-            password: password
-        }),
-        success: function(data) {
-            if(data["status"] == "success") {
-                alert('RESPONSE RECIEVED! ' + data["api_key"]);
-            }else{
-                alert('INCORRECT EMAIL.PASSWORD');
-            }
-        },
-        failure: function(ErrMsg){
-          alert(ErrMsg);
-        },
-        contentType: "application/json",
-        dataType: 'json'
-    });
 
+    var g_email = $("input[name='email']").val();
+    var g_password = $("input[name='password']").val();
+
+    $.ajax({	
+		url: "http://35.227.78.91/login", 
+		type: 'post', 
+		data: { 
+			email: g_email, 
+			password: g_password
+		}, 
+		success: function(result){
+        	console.log(result);
+    }});
 }
