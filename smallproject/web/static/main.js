@@ -168,7 +168,7 @@ function renderContacts() {
 		success: function(result){
          var contactResponse = "";
          $.each(result, function(index){
-            contactResponse += "<a href=\"#\" class=\"w3-bar-item w3-button w3-border\" onclick="renderContact(result[index].ContactID)">" + result[index].contact_name + "</a>";
+            contactResponse += "<a href='#' class='w3-bar-item w3-button w3-border' onclick='renderContact(result[index].ContactID)'>" + result[index].contact_name + "</a>";
          });
 
         	document.getElementById("nav-sidebar").innerHTML = contactResponse;
