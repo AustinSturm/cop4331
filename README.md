@@ -81,7 +81,7 @@ For Leineckers COP4331 projects
 |Argument|Necessity|Description|
 |-----|-|------------------------------------------------------|
 |*api_key*|Required|A string representation of the registering user's name|
-|*contact_name*|Required| A string representation of the registering user's email|
+|*ContactID*|Required| A string representation of the registering user's email|
 
 **Returns** a JSON representation of a user's contacts with a given ```contact_name``` and a ```{status: failure}``` message otherwise.
 

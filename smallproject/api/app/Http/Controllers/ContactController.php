@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
- 
+
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
@@ -9,7 +9,7 @@ use App\User;
 use App\Contact;
 
 use Auth;
- 
+
 class ContactController extends Controller
 {
     public function __construct()
@@ -57,7 +57,7 @@ class ContactController extends Controller
     public function show(Request $request)
     {
         // returns an array with all results, which will always be one when searching ids
-        $contact = Contact::where('contact_name', $request['contact_name'])->get();
+        $contact = Contact::where('ContactID', $request['ContactID'])->get();
         if( ! empty($contact))
         {
             return response()->json($contact);
