@@ -97,25 +97,6 @@ function login() {
 });
 }
 
-function renderContacts() {
-
-    $.ajax({
-		url: "http://35.227.78.91/user/contacts",
-		type: 'post',
-		data: {
-			api_key: api_key_G
-		},
-		success: function(result){
-         var contactResponse = "";
-         $.each(result, function(index){
-            contactResponse += "loldongs";
-         });
-
-        	document.getElementById("nav-sidebar").innerHTML = contactResponse;
-         console.log(result);
-    }});
-}
-
 function renderContact(id) {
 
     $.ajax({
