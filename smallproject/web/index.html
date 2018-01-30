@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="/static/main.js"></script>
+	<script src="./static/main.js"></script>
 	<link rel="stylesheet" href="/static/w3.css">
 	<link rel="stylesheet" href="/static/custom.css">
 
@@ -18,7 +18,7 @@
 					<div class="dropdown w3-dropdown-hover w3-right">
 						 <a id="username" href="#" class="w3-bar-item w3-button w3-large">Anonymous</a>
 						 <div class="w3-dropdown-content w3-bar-block w3-border" style="right:0; top: 44px">
-							  <a href="logout/" class="w3-bar-item w3-button nav-top-highlight">Logout</a>
+							  <input class="w3-button w3-small nav-top-highlight" value="Logout" onclick="logout()"></a>
 						 </div>
 					</div>
             </div>
@@ -30,7 +30,7 @@
 
             <div id="content" class=" w3-container">
         		<script>window.onload = function() {
-					loadLogin();
+					loadContent("login.html");
 				};</script>
             </div>
         </div>
