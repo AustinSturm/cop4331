@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="./static/main.js"></script>
+	<script src="/static/main.js"></script>
 	<link rel="stylesheet" href="/static/w3.css">
 	<link rel="stylesheet" href="/static/custom.css">
 
@@ -14,9 +14,9 @@
 <body>
     <div zclass = "w3-main" id="main">
             <div id="nav-top" class="w3-bar w3-border w3-teal">
-					<button class="w3-button w3-teal w3-large w3-bar-item nav-top-highlight" onclick="navflip()">Contacts</button>
+					<div class="w3-teal w3-margin w3-large w3-left">Contacts</div>
 					<div class="dropdown w3-dropdown-hover w3-right">
-						 <a id="username" href="#" class="w3-bar-item w3-button w3-large">Anonymous</a>
+						 <a id="username" href="#" class="w3-bar-item w3-large w3-button w3-margin">menu</a>
 						 <div class="w3-dropdown-content w3-bar-block w3-border" style="right:0; top: 44px">
 							  <input class="w3-button w3-small nav-top-highlight" value="Logout" onclick="logout()"></a>
 						 </div>
@@ -30,7 +30,17 @@
 
             <div id="content" class=" w3-container">
         		<script>window.onload = function() {
+                    navflip();
+
+        			if (document.cookie != "api_key="){
+        				loadContent("welcomeUser.html");
+        				document.getElementById("username").innerHTML = "menu";
+                        api_key_G = document.cookie.substring(8);
+                        renderContacts_reload(api_key_G);
+        			}
+        			else{
 					loadContent("login.html");
+					}
 				};</script>
             </div>
         </div>
