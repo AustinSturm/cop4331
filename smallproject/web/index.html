@@ -32,7 +32,7 @@
         		<script>window.onload = function() {
                     navflip();
 
-        			if (document.cookie != "api_key="){
+        			if (document.cookie != "api_key=" && document.cookie != ""){
         				loadContent("welcomeUser.html");
         				document.getElementById("username").innerHTML = "menu";
                         api_key_G = document.cookie.substring(8);
