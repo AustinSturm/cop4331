@@ -102,6 +102,7 @@ function renderContacts() {
         },
         success: function(result){
          var contactResponse = "";
+         contactResponse += "<a href='#' class='w3-bar-item w3-button w3-border w3-dark-grey' onclick='loadContent(\"addContact.html\")'> <center><b>ADD CONTACT</b></center> </a>";
          $.each(result, function(index){
             contactResponse += "<a href='#' class='w3-bar-item w3-button w3-border' onclick='renderContact(" + result[index].ContactID + ")'>" + result[index].contact_name + "</a>";
          });
@@ -124,6 +125,7 @@ function renderContact(id) {
         },
         success: function(result){
          response = `
+         <br><br>
          <div class="w3-container contentCenter" style="max-width: 800px;">
             <form class='w3-padding w3-card-4 w3-light-grey'>
                 <h1> Contact Information </h1>
@@ -139,8 +141,6 @@ function renderContact(id) {
                 <b>${result[0].contact_zip_code}</b></br></br>
                 <label>Home Phone:</label></br>
                 <b>${result[0].contact_home_phone}</b></br></br>
-                <label>Cell Phone:</label></br>
-                <b>${result[0].contact_cell_phone}</b></br></br>
                 <label>Work Phone:</label></br>
                 <b>${result[0].contact_work_phone}</b></br></br>
                 <label>Primary Email:</label></br>
@@ -148,10 +148,10 @@ function renderContact(id) {
                 <label>Secondary Email:</label></br>
                 <b>${result[0].contact_secondary_email}</b></br></br>
             </form>
+            <button class="w3-button w3-border w3-margin-top w3-red w3-hover-red" type="submit" value="Submit" onclick="deleteContact(` + id + `)">Delete Contact</button> 
          </div>
          `
             document.getElementById("content").innerHTML = response;
-         console.log(result);
     }});
 }
 // Copy paste of above function except it takes a parameter on request... Used when refreshing during an active session.
@@ -165,6 +165,7 @@ function renderContacts_reload() {
                 },
                 success: function(result){
          var contactResponse = "";
+         contactResponse += "<a href='#' class='w3-bar-item w3-button w3-border w3-dark-grey' onclick='loadContent(\"addContact.html\")'> <center><b>ADD CONTACT</b></center> </a>";
          $.each(result, function(index){
             contactResponse += "<a href='#' class='w3-bar-item w3-button w3-border' onclick='renderContact(" + result[index].ContactID + ")'>" + result[index].contact_name + "</a>";
          });
@@ -172,4 +173,69 @@ function renderContacts_reload() {
                 document.getElementById("nav-sidebar").innerHTML = contactResponse;
 
     }});
+}
+
+function addContact() {
+
+    api_key = document.cookie.substring(8);
+    loadContent("addContact.html");
+    var name = $("input[name='name']").val();
+    var address = $("input[name='address']").val();
+    var city = $("input[name='city']").val();
+    var state = $("input[name='state']").val();
+    var zip = $("input[name='zip']").val();
+    var home_p = $("input[name='home_p']").val();
+    var work_p = $("input[name='work_p']").val();
+    var email = $("input[name='email']").val();
+    var s_email = $("input[name='s_email']").val();
+
+    $.ajax({
+        url: "http://35.227.78.91/contact/add",
+        type: 'post',
+        data: {
+            api_key : api_key,
+            contact_name : name,
+            contact_address : address,
+            contact_city : city,
+            contact_state : state,
+            contact_zip_code : zip,
+            contact_home_phone : home_p,
+            contact_work_phone : work_p,
+            contact_primary_email : email,
+            contact_secondary_email : s_email
+        },
+        success: function(result){
+            console.log("add success");
+            alert(name + " has been added!");
+            renderContacts();
+            loadContent("welcomeUser.html");
+        },
+        error: function(result){
+            console.log("add fail");
+        }
+
+    });
+}
+
+function deleteContact(id) {
+
+    api_key = document.cookie.substring(8);
+
+    $.ajax({
+        url: "http://35.227.78.91/contact/destroy",
+        type: 'post',
+        data: {
+            api_key : api_key,
+            contact_id : id
+        },
+        success: function(result){
+            console.log("deleted contact");
+            alert('Contact has been deleted');
+            renderContacts();
+            loadContent("welcomeUser.html");
+        },
+        error: function(result){
+            console.log("add fail");
+        }
+    });
 }
