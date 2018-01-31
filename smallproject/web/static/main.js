@@ -92,56 +92,81 @@ function login() {
 });
 }
 
-function renderContact(id) {
+function renderContacts() {
+    api_key = document.cookie.substring(8);
     $.ajax({
         url: "http://35.227.78.91/user/contacts",
         type: 'post',
         data: {
-            api_key: api_key_G
+            api_key: api_key
         },
         success: function(result){
          var contactResponse = "";
          $.each(result, function(index){
-            contactResponse += "<a href='#' class='w3-bar-item w3-button w3-border' onclick='renderContact(result[index].ContactID)'>" + result[index].contact_name + "</a>";
+            contactResponse += "<a href='#' class='w3-bar-item w3-button w3-border' onclick='renderContact(" + result[index].ContactID + ")'>" + result[index].contact_name + "</a>";
          });
 
             document.getElementById("nav-sidebar").innerHTML = contactResponse;
-    	    console.log(result);
+         console.log(result);
     }});
 }
 
 
-function renderContacts() {
+function renderContact(id) {
 
+    api_key = document.cookie.substring(8);
     $.ajax({
-		url: "http://35.227.78.91/user/contacts",
-		type: 'post',
-		data: {
-			api_key: api_key_G
-		},
-		success: function(result){
-         var contactResponse = "";
-         $.each(result, function(index){
-            contactResponse += "<a href='#' class='w3-bar-item w3-button w3-border' onclick='renderContact(result[index].ContactID)'>" + result[index].contact_name + "</a>";
-         });
-
-        	document.getElementById("nav-sidebar").innerHTML = contactResponse;
+        url: "http://35.227.78.91/contact/get",
+        type: 'post',
+        data: {
+         api_key: api_key,
+         ContactID: id
+        },
+        success: function(result){
+         response = `
+         <div class="w3-container contentCenter" style="max-width: 800px;">
+            <form class='w3-padding w3-card-4 w3-light-grey'>
+                <h1> Contact Information </h1>
+                <label>Name:</label></br>
+                <b>${result[0].contact_name}</b></br></br>
+                <label>Address:</label></br>
+                <b>${result[0].contact_address}</b></br></br>
+                <label>City:</label></br>
+                <b>${result[0].contact_city}</b></br></br>
+                <label>State:</label></br>
+                <b>${result[0].contact_state}</b></br></br>
+                <label>Zip:</label></br>
+                <b>${result[0].contact_zip_code}</b></br></br>
+                <label>Home Phone:</label></br>
+                <b>${result[0].contact_home_phone}</b></br></br>
+                <label>Cell Phone:</label></br>
+                <b>${result[0].contact_cell_phone}</b></br></br>
+                <label>Work Phone:</label></br>
+                <b>${result[0].contact_work_phone}</b></br></br>
+                <label>Primary Email:</label></br>
+                <b>${result[0].contact_primary_email}</b></br></br>
+                <label>Secondary Email:</label></br>
+                <b>${result[0].contact_secondary_email}</b></br></br>
+            </form>
+         </div>
+         `
+            document.getElementById("content").innerHTML = response;
          console.log(result);
     }});
 }
 // Copy paste of above function except it takes a parameter on request... Used when refreshing during an active session.
-function renderContacts_reload(api_key_G) {
-
+function renderContacts_reload() {
+    api_key = document.cookie.substring(8);
     $.ajax({
                 url: "http://35.227.78.91/user/contacts",
                 type: 'post',
                 data: {
-                        api_key: api_key_G
+                        api_key: api_key
                 },
                 success: function(result){
          var contactResponse = "";
          $.each(result, function(index){
-            contactResponse += "<a href='#' class='w3-bar-item w3-button w3-border' onclick='renderContact(result[index].ContactID)'>" + result[index].contact_name + "</a>";
+            contactResponse += "<a href='#' class='w3-bar-item w3-button w3-border' onclick='renderContact(" + result[index].ContactID + ")'>" + result[index].contact_name + "</a>";
          });
 
                 document.getElementById("nav-sidebar").innerHTML = contactResponse;
