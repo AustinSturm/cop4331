@@ -106,9 +106,10 @@ function renderContact(id) {
          });
 
             document.getElementById("nav-sidebar").innerHTML = contactResponse;
-         console.log(result);
+    	    console.log(result);
     }});
 }
+
 
 function renderContacts() {
 
@@ -126,5 +127,24 @@ function renderContacts() {
 
         	document.getElementById("nav-sidebar").innerHTML = contactResponse;
          console.log(result);
+    }});
+}
+// Copy paste of above function except it takes a parameter on request... Used when refreshing during an active session.
+function renderContacts_reload(api_key_G) {
+
+    $.ajax({
+                url: "http://35.227.78.91/user/contacts",
+                type: 'post',
+                data: {
+                        api_key: api_key_G
+                },
+                success: function(result){
+         var contactResponse = "";
+         $.each(result, function(index){
+            contactResponse += "<a href='#' class='w3-bar-item w3-button w3-border' onclick='renderContact(result[index].ContactID)'>" + result[index].contact_name + "</a>";
+         });
+
+                document.getElementById("nav-sidebar").innerHTML = contactResponse;
+
     }});
 }
