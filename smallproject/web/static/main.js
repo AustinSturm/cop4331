@@ -103,6 +103,19 @@ function renderContacts() {
         success: function(result){
          var contactResponse = "";
          contactResponse += "<a href='#' class='w3-bar-item w3-button w3-border w3-dark-grey' onclick='loadContent(\"addContact.html\")'> <center><b>ADD CONTACT</b></center> </a>";
+         
+        result.sort(function(a, b) {
+
+        var textA = a.contact_name.toLowerCase();
+        var textB = b.contact_name.toLowerCase();
+
+        if (textA < textB) 
+            return -1; 
+        if (textA > textB)
+            return 1;
+        return 0; 
+        });
+
          $.each(result, function(index){
             contactResponse += "<a href='#' class='w3-bar-item w3-button w3-border' onclick='renderContact(" + result[index].ContactID + ")'>" + result[index].contact_name + "</a>";
          });
