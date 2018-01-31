@@ -58,7 +58,6 @@ function register() {
 }
 function logout() {
     document.cookie = "api_key=;";
-    document.getElementById("username").innerHTML = "menu";
     document.getElementById("nav-sidebar").innerHTML = "";
     loadContent("login.html");
 }
@@ -80,7 +79,6 @@ function login() {
 		success: function(result){
         document.cookie = 'api_key=' + result.api_key
         api_key_G = result.api_key
-        document.getElementById("username").innerHTML = "menu";
         console.log(result);
         renderContacts();
         loadContent("welcomeUser.html");
@@ -102,7 +100,10 @@ function renderContacts() {
         },
         success: function(result){
          var contactResponse = "";
-         contactResponse += "<a href='#' class='w3-bar-item w3-button w3-border w3-dark-grey' onclick='loadContent(\"addContact.html\")'> <center><b>ADD CONTACT</b></center> </a>";
+
+         contactResponse += "<a href='#' class='w3-bar-item w3-button w3-light-grey w3-big w3-left' onclick='loadContent(\"addContact.html\")'> <b>ADD CONTACT</b> </a>";
+         contactResponse += "<a href='#' class='w3-bar-item w3-button w3-light-grey w3-big w3-left' onclick='loadContent(\"welcomeUser.html\")'> <b> SEARCH </b> </a><br>";
+         contactResponse += "<div class='w3-bar-item w3-dark-grey w3-center'>Directory</div>";
          
         result.sort(function(a, b) {
 
@@ -139,7 +140,7 @@ function renderContact(id) {
         success: function(result){
          response = `
          <br><br>
-         <div class="w3-container contentCenter" style="max-width: 800px;">
+         <div class="w3-container contentCenter w3-animate-left" style="max-width: 800px;">
             <form class='w3-padding w3-card-4 w3-light-grey'>
                 <h1> Contact Information </h1>
                 <label>Name:</label></br>
@@ -178,12 +179,14 @@ function renderContacts_reload() {
                 },
                 success: function(result){
          var contactResponse = "";
-         contactResponse += "<a href='#' class='w3-bar-item w3-button w3-border w3-dark-grey' onclick='loadContent(\"addContact.html\")'> <center><b>ADD CONTACT</b></center> </a>";
+         contactResponse += "<a href='#' class='w3-bar-item w3-button w3-light-grey w3-big w3-left' onclick='loadContent(\"addContact.html\")'> <b>ADD CONTACT</b> </a>";
+         contactResponse += "<a href='#' class='w3-bar-item w3-button w3-light-grey w3-big w3-left' onclick='loadContent(\"welcomeUser.html\")'> <b> SEARCH </b></a><br>";
+         contactResponse += "<div class='w3-bar-item w3-dark-grey w3-center'>Directory</div>";
          $.each(result, function(index){
             contactResponse += "<a href='#' class='w3-bar-item w3-button w3-border' onclick='renderContact(" + result[index].ContactID + ")'>" + result[index].contact_name + "</a>";
          });
 
-                document.getElementById("nav-sidebar").innerHTML = contactResponse;
+        document.getElementById("nav-sidebar").innerHTML = contactResponse;
 
     }});
 }
@@ -250,5 +253,46 @@ function deleteContact(id) {
         error: function(result){
             console.log("add fail");
         }
+    });
+}
+
+function searchForContact() {
+
+    var searchterm = $("input[name='searchterm']").val();
+    searchterm = searchterm.toLowerCase();
+
+    api_key = document.cookie.substring(8);
+
+    replaceHTML = '';
+
+    $.ajax({
+        url: "http://35.227.78.91/user/contacts",
+        type: 'post',
+        data: {
+            api_key: api_key
+        },
+        success: function(result){
+         var contactResponse = "";
+         contactResponse += "";
+         $.each(result, function(index){
+
+            thisName = result[index].contact_name.toLowerCase();
+            console.log(thisName + " VERSUS " + searchterm);
+
+            if (thisName.includes(searchterm) || thisName == searchterm)
+            {
+                replaceHTML += `<center><a href='#' class='w3-button' onclick='renderContact(` + result[index].ContactID + `)'>` + result[index].contact_name + `</a></center><br>`;
+            }
+         });
+
+        if (replaceHTML == '') { loadContent("failWelcomeUser.html"); } 
+        else 
+        { 
+            var lastIndex = replaceHTML.lastIndexOf("<br>");
+            replaceHTML = replaceHTML.substring(0, lastIndex);
+
+            document.getElementById("contactDetails").innerHTML = replaceHTML; 
+        }
+    }
     });
 }

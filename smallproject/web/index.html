@@ -15,12 +15,9 @@
     <div zclass = "w3-main" id="main">
             <div id="nav-top" class="w3-bar w3-border w3-teal">
 					<div class="w3-teal w3-margin w3-large w3-left" >Contacts</div>
-					<div class="dropdown w3-dropdown-hover w3-right">
-						 <a id="username" href="#" class="w3-bar-item w3-large w3-button w3-margin-bottom">menu</a>
-						 <div class="w3-dropdown-content w3-bar-block w3-border w3-small" style="right:0; top: 30px">
-							  <input class="w3-button w3-small nav-top-highlight" value="Logout" onclick="logout()"></a>
-						 </div>
-					</div>
+                    <div id="username" class="w3-teal w3-margin w3-large w3-right" >
+                        <button class="w3-button" type="submit" value="Submit" onclick="logout()">Logout</button>
+                    </div>
             </div>
 
         <div id="body">
@@ -34,7 +31,6 @@
 
         			if (document.cookie != "api_key=" && document.cookie != ""){
         				loadContent("welcomeUser.html");
-        				document.getElementById("username").innerHTML = "menu";
                 		        api_key = document.cookie.substring(8);
 		                        renderContacts_reload(api_key);
         			}
