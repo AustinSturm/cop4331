@@ -35,14 +35,16 @@
         			if (document.cookie != "api_key=" && document.cookie != ""){
         				loadContent("welcomeUser.html");
         				document.getElementById("username").innerHTML = "menu";
-                        api_key_G = document.cookie.substring(8);
-                        renderContacts_reload(api_key_G);
+                		        api_key = document.cookie.substring(8);
+		                        renderContacts_reload(api_key);
         			}
         			else{
 					loadContent("login.html");
 					}
 				};</script>
             </div>
+
+
         </div>
     </div>
 </body>
